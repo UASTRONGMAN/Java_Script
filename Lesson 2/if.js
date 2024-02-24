@@ -1,6 +1,18 @@
 // -------------------FIRST TASK-------------------
-// let x = -3;
+// let x = 1;
 // if (x === 0){
+//     console.log('False')
+// }else{
+//     console.log('True')
+// }
+// let x_2 = 0;
+// if (x_2 === 0){
+//     console.log('False')
+// }else{
+//     console.log('True')
+// }
+// let x_3 = -3;
+// if (x_3 === 0){
 //     console.log('False')
 // }else{
 //     console.log('True')
