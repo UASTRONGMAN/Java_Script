@@ -85,7 +85,7 @@
 // -------------------SIXTH TASK-------------------
 // let x;
 // x = x || 'default';
-// console.log(x)
+// console.log(x);
 
 
 // -------------------SEVENTH TASK-------------------
