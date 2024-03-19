@@ -65,10 +65,11 @@
 //     start = limit;
 //     limit += step;
 //     for (let i = start; i < limit; i++) {
-//         let li = document.createElement('li');
-//         ul.appendChild(li);
-//         li.innerText = i;
-//         console.log(i)
+//         if (i <= arr.length) {
+//             let li = document.createElement('li');
+//             ul.appendChild(li);
+//             li.innerText = i;
+//         }
 //     }
 // }
 // // При натисканні prev виводяться попередні 10 об'єктів
@@ -76,9 +77,11 @@
 //     start = limit;
 //     limit -= step;
 //     for (let i = start; i < limit; i--) {
-//         let li = document.createElement('li');
-//         ul.appendChild(li);
-//         li.innerText = i;
+//         if (i > arr[0]) {
+//             let li = document.createElement('li');
+//             ul.appendChild(li);
+//             li.innerText = i;
+//         }
 //     }
 // }
 
