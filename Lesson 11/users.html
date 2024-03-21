@@ -12,7 +12,6 @@
     fetch('http://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
         .then(value => {
-            let {users} = value;
             let div = document.createElement('div');
             document.body.appendChild(div);
             let ul = document.createElement('ul');
