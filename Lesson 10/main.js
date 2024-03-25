@@ -64,6 +64,7 @@
 // next.onclick = function () {
 //     start = limit;
 //     limit += step;
+//     ul.innerHTML = '';
 //     for (let i = start; i < limit; i++) {
 //         if (i <= arr.length) {
 //             let li = document.createElement('li');
@@ -74,9 +75,10 @@
 // }
 // // При натисканні prev виводяться попередні 10 об'єктів
 // prev.onclick = function () {
-//     start = limit;
-//     limit -= step;
-//     for (let i = start; i < limit; i--) {
+//     start -= step;
+//     limit = start + step;
+//     ul.innerHTML = '';
+//     for (let i = start; i < limit; i++) {
 //         if (i > arr[0]) {
 //             let li = document.createElement('li');
 //             ul.appendChild(li);

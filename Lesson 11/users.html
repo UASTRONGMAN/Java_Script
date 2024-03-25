@@ -9,21 +9,27 @@
 </head>
 <body>
 <script>
-    fetch('http://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(value => {
-            let div = document.createElement('div');
-            document.body.appendChild(div);
-            let ul = document.createElement('ul');
-            for (const user of value) {
-                let li = document.createElement('li');
-                li.innerText = user.id + '. ' + user.name;
-                let a = document.createElement('a');
-                a.href = 'user-details.html?id=user.id';
-                ul.append(li, a);
-            }
-            div.appendChild(ul)
-        })
+    let URL = 'http://jsonplaceholder.typicode.com/users'
+    function users (url) {
+        fetch(url)
+            .then(res => res.json())
+            .then(value => {
+                let div = document.createElement('div');
+                document.body.appendChild(div);
+                let ul = document.createElement('ul');
+                for (const user of value) {
+                    let li = document.createElement('li');
+                    li.innerText = user.id + '. ' + user.name;
+                    li.addEventListener('click', ()=> {
+                        location.href = 'EachUser.html?id=' + user.id;
+                    })
+                    ul.appendChild(li);
+                }
+                div.appendChild(ul)
+            })
+    }
+    users(URL)
+
 </script>
 </body>
 </html>

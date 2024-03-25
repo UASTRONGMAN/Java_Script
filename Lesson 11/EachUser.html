@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let userId = new URL (location.href).searchParams.get('id');
+        let newURL = 'http://jsonplaceholder.typicode.com/users/'+userId;
+        fetch(newURL).then(res => res.json())
+        .then(value => {
+            let div = document.createElement('div')
+            document.body.appendChild(div)
+            for (const key in value) {
+                if (typeof value[key] != 'object') {
+                    let p = document.createElement('p');
+                    p.innerText = key + ' - ' + value[key];
+                    div.appendChild(p);
+                }
+            }
+            let ul = document.createElement('ul');
+            ul.innerText = 'Address';
+            div.appendChild(ul);
+            for (let address in value.address) {
+                if (typeof value.address[address] != 'object') {
+                    let li = document.createElement('li');
+                    li.innerText = address + ' - ' + value.address[address];
+                    ul.appendChild(li);
+                }else {
+                    let li = document.createElement('li');
+                    li.innerText = address + ': lat: ' + value.address[address].lat + ', lng: ' + value.address[address].lng;
+                    ul.appendChild(li);
+                }
+            }
+            let ulComp = document.createElement('ul');
+            ulComp.innerText = 'Company';
+            div.appendChild(ulComp);
+            for (let company in value.company) {
+                let li = document.createElement('li');
+                li.innerText = company + ' - ' + value.company[company];
+                ulComp.appendChild(li);
+            }
+        })
+    </script>
+</body>
+</html>
