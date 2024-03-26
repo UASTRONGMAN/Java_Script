@@ -24,26 +24,46 @@
             }
             let ul = document.createElement('ul');
             ul.innerText = 'Address';
-            div.appendChild(ul);
             for (let address in value.address) {
                 if (typeof value.address[address] != 'object') {
-                    let li = document.createElement('li');
-                    li.innerText = address + ' - ' + value.address[address];
-                    ul.appendChild(li);
+                    let liAddress = document.createElement('li');
+                    liAddress.innerText = address + ' - ' + value.address[address];
+                    ul.appendChild(liAddress);
                 }else {
-                    let li = document.createElement('li');
-                    li.innerText = address + ': lat: ' + value.address[address].lat + ', lng: ' + value.address[address].lng;
-                    ul.appendChild(li);
+                    let liGeo = document.createElement('li');
+                    liGeo.innerText = address + ': lat: ' + value.address[address].lat + ', lng: ' + value.address[address].lng;
+                    ul.appendChild(liGeo);
                 }
             }
             let ulComp = document.createElement('ul');
             ulComp.innerText = 'Company';
-            div.appendChild(ulComp);
             for (let company in value.company) {
-                let li = document.createElement('li');
-                li.innerText = company + ' - ' + value.company[company];
-                ulComp.appendChild(li);
+                let liCompany = document.createElement('li');
+                liCompany.innerText = company + ' - ' + value.company[company];
+                ulComp.appendChild(liCompany);
             }
+            let button = document.createElement('button');
+            button.innerText = 'Post of current user';
+            div.append(ul, ulComp, button);
+            button.addEventListener('click', ()=>{
+                fetch('https://jsonplaceholder.typicode.com/users/' + userId +'/posts')
+                    .then(res=>res.json())
+                    .then(newValue => {
+                        let ulTitle = document.createElement('ul');
+                        ulTitle.innerText = 'Titles';
+                        for (const title of newValue) {
+                            let liTitle = document.createElement('li');
+                            liTitle.innerText = title.title;
+                            ulTitle.appendChild(liTitle);
+                        }
+                        let buttonPost = document.createElement('button');
+                        buttonPost.innerText = 'Post details';
+                        div.append(ulTitle, buttonPost);
+                        buttonPost.addEventListener('click', ()=>{
+                            location.href = 'post-details.html';
+                        })
+                    })
+            })
         })
 </script>
 </body>
