@@ -54,14 +54,15 @@
                         for (const title of newValue) {
                             let liTitle = document.createElement('li');
                             liTitle.innerText = title.title;
-                            ulTitle.appendChild(liTitle);
+                            let buttonPost = document.createElement('button');
+                            buttonPost.innerText = 'Post details';
+                            buttonPost.addEventListener('click', ()=>{
+                                location.href = 'post-details.html?id=' + title.id;
+                                console.log(title.id)
+                            })
+                            ulTitle.append(liTitle, buttonPost);
                         }
-                        let buttonPost = document.createElement('button');
-                        buttonPost.innerText = 'Post details';
-                        div.append(ulTitle, buttonPost);
-                        buttonPost.addEventListener('click', ()=>{
-                            location.href = 'post-details.html';
-                        })
+                        div.appendChild(ulTitle);
                     })
             })
         })

@@ -8,9 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-<h1>1123123123</h1>
 <script>
-
+    let userPostURL = new URL (location.href).searchParams.get('id');
+    let newURL = 'https://jsonplaceholder.typicode.com/posts/' + userPostURL;
+    fetch(newURL).then(res => res.json())
+        .then(value => {
+            let div = document.createElement('div');
+            document.body.appendChild(div)
+            let userId = document.createElement('p');
+            userId.innerText = 'Id of the user: ' + value.userId;
+            let id = document.createElement('p');
+            id.innerText = 'Id of the user`s post: ' + value.id;
+            let title = document.createElement('p');
+            title.innerText = 'Title of the post: ' + value.title;
+            let body = document.createElement('p');
+            body.innerText = 'Main information of the post: ' + value.body;
+            div.append(userId, id, title, body)
+        })
+    fetch('https://jsonplaceholder.typicode.com/posts/' + userPostURL + '/comments')
+    .then(res=>res.json())
+    .then(value => {
+        console.log(value)
+    })
 </script>
 </body>
 </html>
