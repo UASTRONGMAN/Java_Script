@@ -6,8 +6,42 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        body h1{
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+        body>div{
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        body>div>div{
+            display: flex;
+            justify-content: center;
+        }
+        body>div>ul{
+            padding: 10px;
+            margin: 0;
+        }
+        .buttonPost{
+            width: 90%;
+        }
+        .titles{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .titles>li{
+            width: 18%;
+        }
+    </style>
 </head>
 <body>
+<h1>User information</h1>
 <script>
     let userId = new URL (location.href).searchParams.get('id');
     let newURL = 'https://jsonplaceholder.typicode.com/users/'+userId;
@@ -42,15 +76,19 @@
                 liCompany.innerText = company + ' - ' + value.company[company];
                 ulComp.appendChild(liCompany);
             }
+            let divButton = document.createElement('div')
             let button = document.createElement('button');
             button.innerText = 'Post of current user';
-            div.append(ul, ulComp, button);
+            button.classList.add('buttonPost')
+            div.append(ul, ulComp, divButton);
+            divButton.appendChild(button)
             button.addEventListener('click', ()=>{
                 fetch('https://jsonplaceholder.typicode.com/users/' + userId +'/posts')
                     .then(res=>res.json())
                     .then(newValue => {
                         let ulTitle = document.createElement('ul');
                         ulTitle.innerText = 'Titles';
+                        ulTitle.classList.add('titles')
                         for (const title of newValue) {
                             let liTitle = document.createElement('li');
                             liTitle.innerText = title.title;

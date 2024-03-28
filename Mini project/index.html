@@ -6,8 +6,43 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        body h1{
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+        body>div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #aecbff;
+        }
+        .name{
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .name p {
+            margin: 10px 0;
+            font-size: 22px;
+        }
+        .name button{
+            background-color: #a1b9f3;
+            border: 1.5px black solid;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+<h1>Users</h1>
 <script>
     let URL = 'https://jsonplaceholder.typicode.com/users'
     fetch(URL).then(res=>res.json())
@@ -16,10 +51,13 @@
         document.body.appendChild(mainDiv);
         for (const user of value) {
             let userDiv = document.createElement('div');
-            userDiv.innerText = user.id + ' - ' + user.name;
+            mainDiv.appendChild(userDiv);
+            userDiv.classList.add('name')
+            let p = document.createElement('p')
+            p.innerText = user.id + ' - ' + user.name;
             let button = document.createElement('button');
             button.innerText = 'Get more information'
-            mainDiv.append(userDiv, button);
+            userDiv.append(p, button);
             button.addEventListener('click', ()=> {
                 location.href = 'user-details.html?id=' + user.id;
             })
