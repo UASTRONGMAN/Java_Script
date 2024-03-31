@@ -6,6 +6,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .postInfo{
+            border: 1px solid grey;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .comments{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+        .comments>div{
+            width: 22%;
+            border: 1px solid grey;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
 <script>
@@ -15,6 +34,7 @@
         .then(value => {
             let div = document.createElement('div');
             document.body.appendChild(div)
+            div.classList.add('postInfo')
             let userId = document.createElement('p');
             userId.innerText = 'Id of the user: ' + value.userId;
             let id = document.createElement('p');
@@ -29,8 +49,10 @@
     .then(res=>res.json())
     .then(value => {
         let commentDiv = document.createElement('div');
+        commentDiv.classList.add('comments')
         document.body.appendChild(commentDiv);
         for (const comment of value) {
+            let divCom = document.createElement('div');
             let postId = document.createElement('p');
             postId.innerText = 'Id of the post: ' + comment.postId;
             let commentId = document.createElement('p');
@@ -41,7 +63,8 @@
             userEmail.innerText = 'User email: ' + comment.email;
             let commentBody = document.createElement('p');
             commentBody.innerText = 'Comment body: ' + comment.body;
-            commentDiv.append(postId, commentId, commentName, userEmail, commentBody)
+            divCom.append(postId, commentId, commentName, userEmail, commentBody);
+            commentDiv.appendChild(divCom);
         }
     })
 </script>
